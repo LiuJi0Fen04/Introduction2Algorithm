@@ -66,6 +66,44 @@ I2A_API void abortMesage(std::string msg);
 //     ~LNode();
 // };
 
+typedef struct point2f_
+{
+    float x;
+    float y;
+    point2f_ operator+(point2f_ ob)
+    {
+        point2f_ p;
+        p.x = this->x + ob.x;
+        p.y = this->y + ob.y;
+        return p;
+    };
+    point2f_ operator-(point2f_ ob)
+    {
+        point2f_ p;
+
+        p.x = this->x - ob.x;
+        p.y = this->y - ob.y;
+        return p;
+    };
+    point2f_ operator*(float multi)
+    {
+        point2f_ p;
+
+        p.x = this->x * multi;
+        p.y = this->y * multi;
+        return p;
+    };
+    point2f_(float x, float y)
+    {
+        // std::cout << x << std::endl;
+        this->x = x;
+        this->y = y;
+        // return * this;
+    };
+    point2f_() { this->x = 0.0, this->y = 0.0; };
+    ~point2f_() {};
+}point2f;
+
 
 
 

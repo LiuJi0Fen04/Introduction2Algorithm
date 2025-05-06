@@ -1,0 +1,45 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"code/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "D:/Introduction2Algorithm/out/build/x64-Debug",
+			"paths" : 
+			[
+				"code/Introdunction.dll"
+			],
+			"targetId" : "Introdunction::@1c76e98fcac0e60aa45c",
+			"targetIndex" : 1,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "code",
+		"source" : "code"
+	}
+}

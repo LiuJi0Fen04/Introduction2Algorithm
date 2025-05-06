@@ -9,6 +9,18 @@
 // *                                                                *
 // ******************************************************************
 
+BTree_Node* createNode(int value)
+{
+    BTree_Node* newNode = (BTree_Node*)malloc(sizeof(BTree_Node));
+    if (newNode) {
+        newNode->data = value;
+        newNode->lchild = NULL;
+        newNode->rchild = NULL;
+        newNode->parent = NULL;
+    }
+    return newNode;
+}
+
 
 /**
  *              f
@@ -265,18 +277,24 @@ void callBinarySearchTree()
     BTree_Node* root = NULL;
 
     for(int i = 0; i < insert_size; i++){
-        BTree_Node p;
-        p.data = i;
-        treeInsert(&root, &p);
+        //BTree_Node p;
+        //p.data = i;
+        //treeInsert(&root, &p);
+        BTree_Node* p = createNode(i);
+        treeInsert(&root, p);
     }
     for(int i = 0; i < insert_size; i++){
-        BTree_Node p;
-        p.data = 9 - i;
-        treeInsert(&root, &p);
+        //BTree_Node p;
+        //p.data = 9 - i;
+        //treeInsert(&root, &p);
+        BTree_Node* p = createNode(9 - i);
+        treeInsert(&root, p);
     }
-    BTree_Node p;
-    p.data = 8;
-    treeInsert(&root, &p);
+    //BTree_Node p;
+    //p.data = 8;
+    //treeInsert(&root, &p);
+    BTree_Node* p = createNode(8);
+    treeInsert(&root, p);
     // in order
     Inorder(root);
 

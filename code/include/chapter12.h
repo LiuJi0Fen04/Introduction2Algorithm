@@ -16,6 +16,8 @@ typedef struct _BTree_Node_
     struct _BTree_Node_ *lchild, *rchild, *parent;
 }BTree_Node;
 
+I2A_API BTree_Node* createNode(int value);
+
 
 /**
  *              f
