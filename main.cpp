@@ -40,14 +40,14 @@ int main()
     // callModularExponentiation();
 
     // // chapter12
-    // callBinarySearchTree();
+     //callBinarySearchTree();
 
     // chapter13
-    // callRedBlackTree();
+     callRedBlackTree();
 
     // chapter15
     // callCutRod();
-    callMatrixChainOrder();
+    //callMatrixChainOrder();
 
 
     // chapter16

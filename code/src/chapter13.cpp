@@ -18,7 +18,22 @@
 
 
 // the leaf node
-RBTree_Node Nil{0, NULL, NULL, NULL, RBT_Color::BLACK};
+RBTree_Node Nil{0, RBT_Color::BLACK, NULL, NULL, NULL};
+
+
+RBTree_Node* createRBNode(int value)
+{
+    RBTree_Node* newNode = (RBTree_Node*)malloc(sizeof(RBTree_Node));
+    if (newNode) {
+        newNode->data = value;
+        newNode->color = RBT_Color::RED;
+        newNode->lchild = &Nil;
+        newNode->rchild = &Nil;
+        newNode->parent = &Nil;
+    }
+    return newNode;
+}
+
 
 /// @brief calculate pointer to the node with data 'key'
 /// @param root I- the root of the binary search tree
@@ -27,7 +42,8 @@ RBTree_Node Nil{0, NULL, NULL, NULL, RBT_Color::BLACK};
 RBTree_Node* iterativeRBTreeSearch(RBTree_Node* root, int key)
 {
     RBTree_Node** p;
-    *p = root;
+    //*p = root;
+    p = &root;
     while(*p != NULL && *p != &Nil && key != (*p)->data){
         if(key < (*p)->data)
             *p = (*p)->lchild;
@@ -44,7 +60,7 @@ void RBTreeInorder(RBTree_Node* p)
         RBTreeInorder(p->lchild);
         if(p->parent != &Nil){
             if(p->parent->lchild == p){
-                char loc[5] = "left";
+                char loc[6] = " left";
                 printf("%s, ", loc);
             }
             else{
@@ -53,7 +69,7 @@ void RBTreeInorder(RBTree_Node* p)
             }
         }
         else{
-            char loc[6] = "root";
+            char loc[6] = " root";
             printf("%s, ", loc);
         }
         printf("%5d, %5d, %18p\n", p->data, p->color, p); // %16p 14 + 2
@@ -135,8 +151,9 @@ void leftRotate(RBTree_Node** root, RBTree_Node* x)
 /// @note through case 2, going up perhaps means indicator node goes to a smaller node
 void rbInsertFixUp(RBTree_Node** root, RBTree_Node* z)
 {
+    // design with loop invariant
     // parent is red will violate the priperties of red black tree
-    while(z->parent->color == RBT_Color::RED){ // z will always be a red node
+    while(z->parent->color == RBT_Color::RED){ // if z->p is red, then it's not the root, so there must be z->p->p
         // LEFT: when parent is a left child
         if(z->parent == z->parent->parent->lchild){
             RBTree_Node* y = z->parent->parent->rchild; // uncle
@@ -149,11 +166,11 @@ void rbInsertFixUp(RBTree_Node** root, RBTree_Node* z)
             //   r   r(y)  --------->   b   b       node's color changed in location
             //  /                      /
             // r(z)                   r(z)
-            if(y->color == RBT_Color::RED){ 
-                z->parent->color = RBT_Color::BLACK;
-                y->color = RBT_Color::BLACK;
-                z->parent->parent->color = RBT_Color::RED;
-                z = z->parent->parent;
+            if(y->color == RBT_Color::RED){ // this is how case1 distinguish from case 2 and case 3
+                z->parent->color = RBT_Color::BLACK; // fix z is the child of rod node
+                y->color = RBT_Color::BLACK;         // fix z is the child of rod node
+                z->parent->parent->color = RBT_Color::RED; // fix the violation that simple path has same bh(x)
+                z = z->parent->parent; // look up for violation
             }
             else if(z == z->parent->rchild){
                 // case2: this option will transform case2 into case3 without solving any violation
@@ -224,14 +241,16 @@ void rbInsertFixUp(RBTree_Node** root, RBTree_Node* z)
 
 /// @brief  insert a node into red black tree
 /// @param root I- the root node which should be init as pointer NULL or pointer of other node 
-/// @param z1 I- only the color and the data is important
-void RBTreeInsert(RBTree_Node** root, RBTree_Node* z1)
+/// @param z I- only the color and the data is important
+void RBTreeInsert(RBTree_Node** root, RBTree_Node* z)
 {
     RBTree_Node* y = &Nil; // y will be set as the smallest data that bigger than z.data
     RBTree_Node* x = *root;
-    RBTree_Node* z = (RBTree_Node*)malloc(sizeof(RBTree_Node));
-    if(z != &Nil) // prevent dereference NULL
-        z->data = z1->data;
+
+    //RBTree_Node* z = (RBTree_Node*)malloc(sizeof(RBTree_Node));
+    //if(z != &Nil) // prevent dereference NULL
+    //    z->data = z1->data;
+
     // the NULL here will help with initial the tree's root(user can initial the root as NULL instead of Nil,
     // the latter one is neither available nor easy to use outside the code);
     while(x != &Nil && x != NULL){ 
@@ -249,10 +268,11 @@ void RBTreeInsert(RBTree_Node** root, RBTree_Node* z1)
         y->rchild = z;
     else
         y->lchild = z;
-    z->lchild = &Nil; // check if this measure takes effect
-    z->rchild = &Nil;
-    z->color = RBT_Color::RED;
-    RBTree_Node* iter = z;
+    //z->lchild = &Nil; // check if this measure takes effect
+    //z->rchild = &Nil;
+    //z->color = RBT_Color::RED;
+
+    //RBTree_Node* iter = z;
     // printf("\n");
     // printf("> pointer: %p, data: %d, color: %d", z, z->data, z->color);
     // while(iter->parent != &Nil){
@@ -391,10 +411,13 @@ void callRedBlackTree()
     int insert_size = 9;
     RBTree_Node* root = NULL;
     for(int i = 0; i < insert_size; i++){
-        RBTree_Node p;
-        // p.data = insert_size - i;
-        p.data = i;
-        RBTreeInsert(&root, &p);
+        //RBTree_Node p;
+        //// p.data = insert_size - i;
+        //p.data = i;
+        //RBTreeInsert(&root, &p);
+
+        RBTree_Node* p = createRBNode(i);
+        RBTreeInsert(&root, p);
     }
     // insert a red black tree
     RBTreeInorder(root);

@@ -167,12 +167,12 @@ BTree_Node* treePredecessor(BTree_Node* p)
 /// @param root IO- the root of the binary search tree(double * will allow the root to be inited as both NULL and others)
 /// @param p1 I- the node to insert
 /// @note the parameter 'p1' is not suitable, the only value need to pass through this position is the node's data
-void treeInsert(BTree_Node** root, BTree_Node* p1)
+void treeInsert(BTree_Node** root, BTree_Node* p)
 {
     BTree_Node* y = NULL;
     BTree_Node* x = *root; // x is uesd to search position to insert from root and transmit the value to y
-    BTree_Node* p = (BTree_Node*)malloc(sizeof(BTree_Node)); // check if the pointer is created successfully
-    p->data = p1->data;    
+    //BTree_Node* p = (BTree_Node*)malloc(sizeof(BTree_Node)); // check if the pointer is created successfully
+    //p->data = p1->data;    
     while(x != NULL){
         y = x;
         if(x->data < p->data)
@@ -206,7 +206,7 @@ void treeInsert(BTree_Node** root, BTree_Node* p1)
 ///        , includes only the (v & u->parent) connection)
 /// @param root the root on behalf of the binary search tree
 /// @param u the position where want to move the subtree
-/// @param v subtree root
+/// @param v subtree root(which could be nothing todo with the tree of u)
 /// @note this operation don't change the location of u v
 void transPlant(BTree_Node* root, BTree_Node* u,BTree_Node* v) // 这里的参数root会有问题， 应该是使用**root
 {
@@ -231,14 +231,14 @@ void treeDelete(BTree_Node* root, BTree_Node* p)
     else if(p->rchild == NULL)
         transPlant(root, p, p->lchild);
     else{
-        BTree_Node* y = treeMinimum(p->rchild); // y has no left child
-        if(y->parent != p){ // case 3: the node p has two child but and it's succesor is not next to itself 
+        BTree_Node* y = treeMinimum(p->rchild); // y has no left child(if has the minimum so be its left child)
+        if(y->parent != p){ // case 4: the node p has two child but and it's succesor is not next to itself 
             transPlant(root, y, y->rchild); // this will make y link to none node(isolate y)
             y->rchild = p->rchild; // re-link right child 
             y->rchild->parent = y;
         }
         // connect the y node with p's left(mutual)
-        transPlant(root, p, y); // case 4: the node p has two child but and it's succesor is next to itself
+        transPlant(root, p, y); // case 3: the node p has two child but and it's succesor is next to itself
         y->lchild = p->lchild; // re-link left child
         y->lchild->parent = y;
     }

@@ -73,7 +73,7 @@ I2A_API BTree_Node* treePredecessor(BTree_Node* p);
 /// @param root IO- the root of the binary search tree(double * will allow the root to be inited as both NULL and others)
 /// @param p1 I- the node to insert
 /// @note the parameter 'p1' is not suitable, the only value need to pass through this position is the node's data
-I2A_API void treeInsert(BTree_Node** root, BTree_Node* p1);
+I2A_API void treeInsert(BTree_Node** root, BTree_Node* p);
 
 /**
  *     1. the left situation(right situation is the same with the left)
