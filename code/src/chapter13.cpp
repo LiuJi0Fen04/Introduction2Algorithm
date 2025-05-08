@@ -61,16 +61,16 @@ void RBTreeInorder(RBTree_Node* p)
         if(p->parent != &Nil){
             if(p->parent->lchild == p){
                 char loc[6] = " left";
-                printf("%s, ", loc);
+                printf("%s, parent%d", loc, p->parent->data);
             }
             else{
                 char loc[6] = "right";
-                printf("%s, ", loc);
+                printf("%s, parent%d", loc, p->parent->data);
             }
         }
         else{
             char loc[6] = " root";
-            printf("%s, ", loc);
+            printf("%s, parentN", loc);
         }
         printf("%5d, %5d, %18p\n", p->data, p->color, p); // %16p 14 + 2
         RBTreeInorder(p->rchild);
@@ -306,7 +306,7 @@ void RBTransplant(RBTree_Node** root, RBTree_Node* u, RBTree_Node* v)
     printf(">> The pointer to u  : %p\n", u);
     if(u->parent == &Nil)
         *root = v;
-    else if(u->parent->lchild = u)
+    else if(u->parent->lchild == u)
         u->parent->lchild = v;
     else
         u->parent->rchild = v;
@@ -334,31 +334,72 @@ void RBTreeDeleteFixup(RBTree_Node** root, RBTree_Node* x)
                 w = x->parent->rchild; // x's parent has been changed
 
             }
-            // case2: this will change the color of the node x
+            // below the color of w must be black
+            // case2: this will change the color of the node x(terminate through case1 enter case2)
             if(w->lchild->color == RBT_Color::BLACK && w->rchild->color == RBT_Color::BLACK){
-                w->color = RBT_Color::RED;
+                w->color = RBT_Color::RED; // w is red
                 x = x->parent;
             }
-            // case3
+            // case3 condition: w is back
             else if(w->rchild->color == RBT_Color::BLACK){
                 w->lchild->color = RBT_Color::BLACK;
                 w->color = RBT_Color::RED;
                 rightRotate(root, w);
                 w = x->parent->rchild;
-                //case4
+                //case4  condition: w is black and w->rchild is red
                 w->color = x->parent->color;
                 x->parent->color = RBT_Color::BLACK;
                 w->rchild->color = RBT_Color::BLACK;
                 leftRotate(root, x->parent);
                 x = *root;
             }
-            else{
-
+            else {
+                //case4  condition: w is black and w->rchild is red
+                w->color = x->parent->color;
+                x->parent->color = RBT_Color::BLACK;
+                w->rchild->color = RBT_Color::BLACK;
+                leftRotate(root, x->parent);
+                x = *root;
             }
         }
         // on the right child
         else{
+            RBTree_Node* w = x->parent->lchild;
+            // case1: 
+            if (w->color == RBT_Color::RED) {
+                w->color = RBT_Color::BLACK;
+                x->parent->color = RBT_Color::RED;
+                rightRotate(root, x->parent);
+                w = x->parent->lchild; // x's parent has been changed
 
+            }
+            // below the color of w must be black
+            // case2: this will change the color of the node x(terminate through case1 enter case2)
+            if (w->rchild->color == RBT_Color::BLACK && w->lchild->color == RBT_Color::BLACK) {
+                w->color = RBT_Color::RED; // w is red
+                x = x->parent;
+            }
+            // case3 condition: w is back
+            else if (w->lchild->color == RBT_Color::BLACK) {
+                w->rchild->color = RBT_Color::BLACK;
+                w->color = RBT_Color::RED;
+                leftRotate(root, w);
+                w = x->parent->lchild;
+                //case4  condition: w is black and w->rchild is red
+                w->color = x->parent->color;
+                x->parent->color = RBT_Color::BLACK;
+                w->lchild->color = RBT_Color::BLACK;
+                rightRotate(root, x->parent);
+                x = *root;
+            }
+            else {
+                //case4  condition: w is black and w->rchild is red
+                w->color = x->parent->color;
+                x->parent->color = RBT_Color::BLACK;
+                w->lchild->color = RBT_Color::BLACK;
+                rightRotate(root, x->parent);
+                x = *root;
+            }
         }
     }
     x->color = RBT_Color::BLACK;
@@ -367,7 +408,7 @@ void RBTreeDeleteFixup(RBTree_Node** root, RBTree_Node* x)
 
 void RBTreeDelete(RBTree_Node** root, RBTree_Node* z)
 {
-    printf("-------------\n");
+    printf("-------------delete process\n");
     RBTree_Node* y = z;
     RBT_Color y_original_color = y->color;
     RBTree_Node* x;
@@ -395,16 +436,33 @@ void RBTreeDelete(RBTree_Node** root, RBTree_Node* z)
             y->rchild->parent = y;
         }
         RBTransplant(root, z, y);
+        //abort();
         y->lchild = z->lchild;
         y->lchild->parent = y;
-        y->color = z->color;
+        y->color = z->color; // the color of y has been set to the color of z, and now if there still some violation the color of x should be either 'red&black' or 'black&black' which in violation with property1
     }
     printf("> starting the delete color fix up\n");
     if(y_original_color == RBT_Color::BLACK){
-        // RBTreeDeleteFixup(root, x);
+         RBTreeDeleteFixup(root, x);
     }
 }
 
+
+
+
+/**
+* the 'd' behind numbers means the number is a dark node
+*              3d
+*         _____|_____
+*        |           |
+*        1           5
+*     ___|___     ___|___
+*    |       |   |       |
+*    0d      2d  4d      7d
+*                      __|__
+*                     |     |
+*                     6     8
+*/
 void callRedBlackTree()
 {
     printf("> Running test for chapter 13\n");
@@ -433,7 +491,7 @@ void callRedBlackTree()
     else{
         printf("> Can't find minimum node in the red black tree\n"); // %16p 14 + 2
     }
-    RBTree_Node* node = iterativeRBTreeSearch(root, 0);
+    RBTree_Node* node = iterativeRBTreeSearch(root, 3);
     if(node != NULL){
         printf("\n> node data-%d, color-%d, pointer-%p\n", node->data, node->color, node);
         // red black tree delete
