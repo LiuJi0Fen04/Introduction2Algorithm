@@ -1,7 +1,6 @@
 #include <chapter13.h>
 #include <chapter12.h>
 
-
 // ******************************************************************
 // *                                                                *
 // *                     Red-Black trees                            *
@@ -447,7 +446,17 @@ void RBTreeDelete(RBTree_Node** root, RBTree_Node* z)
     }
 }
 
-
+RBTree_Node* RBTreeSearch(RBTree_Node* p, int key)
+{
+    if (p == NULL || p->data == key) {
+        return p;
+    }
+    if (key < p->data) {
+        return RBTreeSearch(p->lchild, key);
+    }
+    else
+        return RBTreeSearch(p->rchild, key);
+}
 
 
 /**

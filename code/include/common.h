@@ -5,7 +5,7 @@
 #include <vector>
 
 const float MAXIMUM = std::numeric_limits<float>::infinity();
-
+const float epsilon_f = std::numeric_limits<float>::epsilon();
 template <typename T1, typename T2>
 struct Array
 {

@@ -5,7 +5,9 @@
 #include "common.h"
 #include <limits>
 
-float epsilon_f = std::numeric_limits<float>::epsilon();
+
+
+//float epsilon_f = std::numeric_limits<float>::epsilon();
 
 
 // ******************************************************************
