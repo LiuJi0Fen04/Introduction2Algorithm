@@ -162,6 +162,15 @@ build code\CMakeFiles\Introdunction.dir\src\chapter10.cpp.obj: CXX_COMPILER__Int
   TARGET_COMPILE_PDB = code\CMakeFiles\Introdunction.dir\
   TARGET_PDB = code\Introdunction.pdb
 
+build code\CMakeFiles\Introdunction.dir\src\chapter10_temp.cpp.obj: CXX_COMPILER__Introdunction_unscanned_Debug D$:\Introduction2Algorithm\code\src\chapter10_temp.cpp || cmake_object_order_depends_target_Introdunction
+  DEFINES = -DIntrodunction_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -ID:\Introduction2Algorithm\code\include
+  OBJECT_DIR = code\CMakeFiles\Introdunction.dir
+  OBJECT_FILE_DIR = code\CMakeFiles\Introdunction.dir\src
+  TARGET_COMPILE_PDB = code\CMakeFiles\Introdunction.dir\
+  TARGET_PDB = code\Introdunction.pdb
+
 build code\CMakeFiles\Introdunction.dir\src\chapter11.cpp.obj: CXX_COMPILER__Introdunction_unscanned_Debug D$:\Introduction2Algorithm\code\src\chapter11.cpp || cmake_object_order_depends_target_Introdunction
   DEFINES = -DIntrodunction_EXPORTS
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
@@ -190,6 +199,15 @@ build code\CMakeFiles\Introdunction.dir\src\chapter13.cpp.obj: CXX_COMPILER__Int
   TARGET_PDB = code\Introdunction.pdb
 
 build code\CMakeFiles\Introdunction.dir\src\chapter15.cpp.obj: CXX_COMPILER__Introdunction_unscanned_Debug D$:\Introduction2Algorithm\code\src\chapter15.cpp || cmake_object_order_depends_target_Introdunction
+  DEFINES = -DIntrodunction_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -ID:\Introduction2Algorithm\code\include
+  OBJECT_DIR = code\CMakeFiles\Introdunction.dir
+  OBJECT_FILE_DIR = code\CMakeFiles\Introdunction.dir\src
+  TARGET_COMPILE_PDB = code\CMakeFiles\Introdunction.dir\
+  TARGET_PDB = code\Introdunction.pdb
+
+build code\CMakeFiles\Introdunction.dir\src\chapter22.cpp.obj: CXX_COMPILER__Introdunction_unscanned_Debug D$:\Introduction2Algorithm\code\src\chapter22.cpp || cmake_object_order_depends_target_Introdunction
   DEFINES = -DIntrodunction_EXPORTS
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -ID:\Introduction2Algorithm\code\include
@@ -261,6 +279,15 @@ build code\CMakeFiles\Introdunction.dir\src\include.cpp.obj: CXX_COMPILER__Intro
   TARGET_COMPILE_PDB = code\CMakeFiles\Introdunction.dir\
   TARGET_PDB = code\Introdunction.pdb
 
+build code\CMakeFiles\Introdunction.dir\src\reflex_test.cpp.obj: CXX_COMPILER__Introdunction_unscanned_Debug D$:\Introduction2Algorithm\code\src\reflex_test.cpp || cmake_object_order_depends_target_Introdunction
+  DEFINES = -DIntrodunction_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -ID:\Introduction2Algorithm\code\include
+  OBJECT_DIR = code\CMakeFiles\Introdunction.dir
+  OBJECT_FILE_DIR = code\CMakeFiles\Introdunction.dir\src
+  TARGET_COMPILE_PDB = code\CMakeFiles\Introdunction.dir\
+  TARGET_PDB = code\Introdunction.pdb
+
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target Introdunction
@@ -269,7 +296,7 @@ build code\CMakeFiles\Introdunction.dir\src\include.cpp.obj: CXX_COMPILER__Intro
 #############################################
 # Link the shared library code\Introdunction.dll
 
-build code\Introdunction.dll code\Introdunction.lib: CXX_SHARED_LIBRARY_LINKER__Introdunction_Debug code\CMakeFiles\Introdunction.dir\src\chapter1.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter10.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter11.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter12.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter13.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter15.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter31.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter33.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter6.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter7.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter8.cpp.obj code\CMakeFiles\Introdunction.dir\src\common.cpp.obj code\CMakeFiles\Introdunction.dir\src\include.cpp.obj
+build code\Introdunction.dll code\Introdunction.lib: CXX_SHARED_LIBRARY_LINKER__Introdunction_Debug code\CMakeFiles\Introdunction.dir\src\chapter1.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter10.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter10_temp.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter11.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter12.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter13.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter15.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter22.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter31.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter33.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter6.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter7.cpp.obj code\CMakeFiles\Introdunction.dir\src\chapter8.cpp.obj code\CMakeFiles\Introdunction.dir\src\common.cpp.obj code\CMakeFiles\Introdunction.dir\src\include.cpp.obj code\CMakeFiles\Introdunction.dir\src\reflex_test.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
