@@ -1,8 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"D:/Introduction2Algorithm/build/cmake_install.cmake",
-		"D:/Introduction2Algorithm/build/code/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

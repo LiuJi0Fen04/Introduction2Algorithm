@@ -1,6 +1,0 @@
-D:/Introduction2Algorithm/build/CMakeFiles/I2A.dir
-D:/Introduction2Algorithm/build/CMakeFiles/INSTALL.dir
-D:/Introduction2Algorithm/build/CMakeFiles/ALL_BUILD.dir
-D:/Introduction2Algorithm/build/CMakeFiles/ZERO_CHECK.dir
-D:/Introduction2Algorithm/build/code/CMakeFiles/Introdunction.dir
-D:/Introduction2Algorithm/build/code/CMakeFiles/INSTALL.dir

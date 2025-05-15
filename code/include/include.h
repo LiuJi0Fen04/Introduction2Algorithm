@@ -1,3 +1,5 @@
+#pragma once
+
 #include "chapter1.h"
 #include "chapter6.h"
 #include "chapter7.h"
@@ -12,4 +14,3 @@
 #include "chapter33.h"
 #include "reflex_test.h"
 #include "chapter10_temp.h"
-
